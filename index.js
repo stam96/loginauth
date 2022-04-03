@@ -20,9 +20,11 @@ app.use(morgan("tiny"));
 //habilitar json para visualizar JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(express.static(__dirname + "/public"));
+
+// Middleware para Vue.js router modo history
+const history = require("connect-history-api-fallback");
+app.use(history());
+app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
